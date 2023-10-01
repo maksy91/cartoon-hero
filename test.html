@@ -1,14 +1,29 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-	<title>Test page</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Data Fetcher</title>
 </head>
 <body>
-	<h1>Hey. I'm a big heading</h1>
-	<p>Hey. I'm a paragraph element. Cool huh?</p>
-	<a href="https://google.com" target="_blank" title="Let's go to Google">Click me! I'm a link!</a>
-	<p>My name is: <br>
-	Kitty Cat</p>
-	<img src="img/cat.jpg">
+    <h1>Data from Another Website</h1>
+    <div id="data-container"></div>
+
+    <script>
+        // Replace 'API_ENDPOINT' with the actual API endpoint you are using.
+        const apiUrl = 'https://identitysso-cert.betfair.it/api/certlogin';
+
+        // Make a GET request to the API.
+        fetch(apiUrl)
+            .then(response => response.json())
+            .then(data => {
+                // Process and display the data on the page.
+                const dataContainer = document.getElementById('data-container');
+                dataContainer.innerHTML = JSON.stringify(data, null, 2);
+            })
+            .catch(error => {
+                console.error('Error fetching data:', error);
+            });
+    </script>
 </body>
 </html>
